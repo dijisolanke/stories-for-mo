@@ -1,0 +1,30 @@
+➜  bedtime-stories npm install sanity @sanity/vision @sanity/image-url
+
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE could not resolve
+npm ERR! 
+npm ERR! While resolving: react-day-picker@8.10.1
+npm ERR! Found: date-fns@4.1.0
+npm ERR! node_modules/date-fns
+npm ERR!   date-fns@"4.1.0" from the root project
+npm ERR! 
+npm ERR! Could not resolve dependency:
+npm ERR! peer date-fns@"^2.28.0 || ^3.0.0" from react-day-picker@8.10.1
+npm ERR! node_modules/react-day-picker
+npm ERR!   react-day-picker@"8.10.1" from the root project
+npm ERR! 
+npm ERR! Conflicting peer dependency: date-fns@3.6.0
+npm ERR! node_modules/date-fns
+npm ERR!   peer date-fns@"^2.28.0 || ^3.0.0" from react-day-picker@8.10.1
+npm ERR!   node_modules/react-day-picker
+npm ERR!     react-day-picker@"8.10.1" from the root project
+npm ERR! 
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+npm ERR! 
+npm ERR! 
+npm ERR! For a full report see:
+npm ERR! /Users/diji/.npm/_logs/2025-06-25T18_25_44_608Z-eresolve-report.txt
+
+npm ERR! A complete log of this run can be found in: /Users/diji/.npm/_logs/2025-06-25T18_25_44_608Z-debug-0.log
