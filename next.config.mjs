@@ -3,6 +3,7 @@ const nextConfig = {
   experimental: {
     // Enable React 19 features
     ppr: false,
+    transpilePackages: ["sanity"],
   },
   // Enable styled-components
   compiler: {
@@ -10,7 +11,14 @@ const nextConfig = {
   },
   // Image optimization for stories
   images: {
-    domains: ["cdn.sanity.io"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
