@@ -1,14 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
+  experimental: {
+    // Enable React 19 features
+    ppr: false,
   },
-  typescript: {
-    ignoreBuildErrors: true,
+  // Enable styled-components
+  compiler: {
+    styledComponents: true,
   },
+  // Image optimization for stories
   images: {
-    unoptimized: true,
+    domains: ["cdn.sanity.io"],
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
