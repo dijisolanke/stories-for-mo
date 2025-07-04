@@ -1,20 +1,15 @@
-import { defineConfig } from "sanity";
-import { structureTool } from "sanity/structure";
-import { visionTool } from "@sanity/vision";
 import { schemaTypes } from ".";
 
-export default defineConfig({
+// sanity.config.ts for v2
+export default {
   name: "default",
   title: "stories2",
-
-  projectId: "n3n7jqd7",
-  dataset: "production",
-
-  plugins: [structureTool(), visionTool()],
-
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "your-project-id",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+  plugins: [
+    // Different plugin syntax for v2
+  ],
   schema: {
     types: schemaTypes,
   },
-
-  basePath: "/admin",
-});
+};
