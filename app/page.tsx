@@ -22,7 +22,7 @@ export default async function HomePage() {
                 fontSize: { xs: "2rem", md: "2.5rem" },
               }}
             >
-              Bedtime Stories
+              Stories for Mo
             </Typography>
           </Box>
           <Typography
