@@ -2,6 +2,7 @@ import { Container, Box, Typography } from "@mui/material";
 import { Bedtime } from "@mui/icons-material";
 import { getStories } from "@/lib/sanity";
 import StoriesBrowser from "@/components/stories-browser";
+import FloatingDonationButton from "@/components/FloatingDonationButton";
 
 export const revalidate = 60; // ISR: refresh once a minute
 
@@ -37,6 +38,12 @@ export default async function HomePage() {
 
       {/* Client-side browsing / filtering / playback */}
       <StoriesBrowser initialStories={stories} />
+
+      {/* Floating donation button */}
+      <FloatingDonationButton
+        donationUrl="https://pay.sumup.com/b2c/QFULCMYD"
+        buttonText="BUY ME A COFFEE!"
+      />
     </>
   );
 }
