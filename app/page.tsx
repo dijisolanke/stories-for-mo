@@ -1,13 +1,17 @@
 import { Container, Box, Typography } from "@mui/material";
 import { Bedtime } from "@mui/icons-material";
-import { getStories } from "@/lib/sanity";
+import { getStories, getPinnedStory } from "@/lib/sanity";
 import StoriesBrowser from "@/components/stories-browser";
 import FloatingDonationButton from "@/components/FloatingDonationButton";
+import WelcomeIntro from "@/components/WelcomeIntro";
 
 export const revalidate = 60; // ISR: refresh once a minute
 
 export default async function HomePage() {
-  const stories = await getStories();
+  const [stories, pinnedStory] = await Promise.all([
+    getStories(),
+    getPinnedStory(),
+  ]);
 
   return (
     <>
@@ -34,6 +38,9 @@ export default async function HomePage() {
             Choose a story and relax as you listen to wonderful tales 💤
           </Typography>
         </Box>
+
+        {/* Welcome intro section for pinned story */}
+        {pinnedStory && <WelcomeIntro story={pinnedStory} />}
       </Container>
 
       {/* Client-side browsing / filtering / playback */}

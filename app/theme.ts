@@ -1,13 +1,13 @@
-"use client"
-import { createTheme } from "@mui/material/styles"
+"use client";
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#8b5cf6", // Soft purple
-      light: "#a78bfa",
-      dark: "#7c3aed",
+      main: "#a78bfa", // Soft lavender purple
+      light: "#c4b5fd",
+      dark: "#8b5cf6",
     },
     secondary: {
       main: "#fbbf24", // Warm amber
@@ -15,14 +15,14 @@ const theme = createTheme({
       dark: "#f59e0b",
     },
     background: {
-      default: "#1e1b3a", // Deep navy blue
-      paper: "#2d2a4a", // Slightly lighter navy
+      default: "transparent", // Let StarField show through
+      paper: "rgba(15, 15, 35, 0.85)", // Semi-transparent deep navy
     },
     text: {
       primary: "#f1f5f9", // Soft white
-      secondary: "#cbd5e1", // Light gray
+      secondary: "#a5b4c6", // Muted blue-gray
     },
-    divider: "#475569",
+    divider: "rgba(139, 92, 246, 0.2)",
   },
   typography: {
     fontFamily: "Inter, Arial, sans-serif",
@@ -50,6 +50,13 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: "#0a0a1a",
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -67,8 +74,8 @@ const theme = createTheme({
           },
         },
         outlined: {
-          borderColor: "#8b5cf6",
-          color: "#a78bfa",
+          borderColor: "rgba(167, 139, 250, 0.5)",
+          color: "#c4b5fd",
           "&:hover": {
             borderColor: "#a78bfa",
             backgroundColor: "rgba(139, 92, 246, 0.1)",
@@ -80,11 +87,14 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 16,
-          background: "linear-gradient(135deg, #2d2a4a 0%, #3730a3 100%)",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
-          border: "1px solid rgba(139, 92, 246, 0.2)",
+          background:
+            "linear-gradient(135deg, rgba(20, 20, 45, 0.9) 0%, rgba(30, 25, 60, 0.9) 100%)",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
+          border: "1px solid rgba(139, 92, 246, 0.15)",
+          backdropFilter: "blur(8px)",
           "&:hover": {
-            boxShadow: "0 8px 24px rgba(139, 92, 246, 0.2)",
+            boxShadow: "0 8px 32px rgba(139, 92, 246, 0.25)",
+            border: "1px solid rgba(139, 92, 246, 0.3)",
           },
         },
       },
@@ -104,16 +114,19 @@ const theme = createTheme({
     MuiSlider: {
       styleOverrides: {
         root: {
-          color: "#8b5cf6",
+          color: "#a78bfa",
           "& .MuiSlider-thumb": {
-            backgroundColor: "#a78bfa",
-            boxShadow: "0 2px 8px rgba(139, 92, 246, 0.3)",
+            backgroundColor: "#c4b5fd",
+            boxShadow: "0 2px 8px rgba(139, 92, 246, 0.4)",
+            "&:hover": {
+              boxShadow: "0 2px 12px rgba(139, 92, 246, 0.6)",
+            },
           },
           "& .MuiSlider-track": {
             background: "linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%)",
           },
           "& .MuiSlider-rail": {
-            backgroundColor: "#475569",
+            backgroundColor: "rgba(100, 116, 139, 0.4)",
           },
         },
       },
@@ -122,10 +135,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#8b5cf6",
+            borderColor: "rgba(139, 92, 246, 0.3)",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#a78bfa",
+            borderColor: "rgba(139, 92, 246, 0.5)",
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: "#a78bfa",
@@ -133,7 +146,26 @@ const theme = createTheme({
         },
       },
     },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "rgba(139, 92, 246, 0.1)",
+          },
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: "rgba(20, 20, 45, 0.95)",
+          border: "1px solid rgba(139, 92, 246, 0.3)",
+          borderRadius: 8,
+          fontSize: "0.8rem",
+        },
+      },
+    },
   },
-})
+});
 
-export default theme
+export default theme;

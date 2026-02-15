@@ -1,28 +1,40 @@
-"use client"
-import type React from "react"
-import { Card, CardContent, CardActions, Typography, Button, Chip, Box } from "@mui/material"
-import { PlayArrow, Headphones } from "@mui/icons-material"
-import Image from "next/image"
-import type { Story } from "@/lib/sanity"
+"use client";
+import type React from "react";
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+  Button,
+  Chip,
+  Box,
+} from "@mui/material";
+import { PlayArrow, Headphones } from "@mui/icons-material";
+import Image from "next/image";
+import type { Story } from "@/lib/sanity";
+import { isNewStory } from "@/lib/sanity";
 
 interface StoryCardProps {
-  story: Story
-  onPlay: (story: Story) => void
+  story: Story;
+  onPlay: (story: Story) => void;
 }
 
 export default function StoryCard({ story, onPlay }: StoryCardProps) {
-  const tags = story.tags ? story.tags.split(",").map((tag) => tag.trim()) : []
+  const tags = story.tags ? story.tags.split(",").map((tag) => tag.trim()) : [];
+  const isNew = isNewStory(story);
 
   const handlePlay = () => {
-    onPlay(story)
-  }
+    // Dispatch event for other components to react to
+    window.dispatchEvent(new CustomEvent("storySelected"));
+    onPlay(story);
+  };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault()
-      handlePlay()
+      event.preventDefault();
+      handlePlay();
     }
-  }
+  };
 
   return (
     <Card
@@ -96,6 +108,37 @@ export default function StoryCard({ story, onPlay }: StoryCardProps) {
         >
           <Headphones sx={{ color: "white", fontSize: 20 }} />
         </Box>
+
+        {/* NEW badge */}
+        {isNew && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: 12,
+              left: 12,
+              backgroundColor: "#10b981",
+              color: "white",
+              borderRadius: "6px",
+              px: 1,
+              py: 0.25,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 2px 8px rgba(16, 185, 129, 0.4)",
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+              }}
+            >
+              New
+            </Typography>
+          </Box>
+        )}
       </Box>
 
       <CardContent sx={{ flexGrow: 1, p: 2.5 }}>
@@ -211,5 +254,5 @@ export default function StoryCard({ story, onPlay }: StoryCardProps) {
         </Button>
       </CardActions>
     </Card>
-  )
+  );
 }
