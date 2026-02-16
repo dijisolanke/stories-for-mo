@@ -536,7 +536,12 @@ export default function AudioPlayer({ story, onClose }: AudioPlayerProps) {
             onClick={togglePlayPause}
             startIcon={isPlaying ? <Pause /> : <PlayArrow />}
             size="large"
-            sx={{ minWidth: 120, mx: 1 }}
+            sx={{
+              minWidth: { xs: 100, sm: 120 },
+              mx: 1,
+              py: { xs: 1, sm: 1.5 },
+              fontSize: { xs: "0.9rem", sm: "1rem" },
+            }}
             aria-label={isPlaying ? "Pause story" : "Play story"}
           >
             {isPlaying ? "Pause" : "Play"}
@@ -563,7 +568,12 @@ export default function AudioPlayer({ story, onClose }: AudioPlayerProps) {
             startIcon={<Stop />}
             size="large"
             aria-label="Stop story"
-            sx={{ ml: 2 }}
+            sx={{
+              minWidth: { xs: 100, sm: 120 },
+              mx: 1,
+              py: { xs: 1, sm: 1.5 },
+              fontSize: { xs: "0.9rem", sm: "1rem" },
+            }}
           >
             Stop
           </Button>
