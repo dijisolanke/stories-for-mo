@@ -547,21 +547,6 @@ export default function AudioPlayer({ story, onClose }: AudioPlayerProps) {
             {isPlaying ? "Pause" : "Play"}
           </Button>
 
-          <Tooltip title="Forward 10 seconds">
-            <IconButton
-              onClick={handleSkipForward}
-              aria-label="Skip forward 10 seconds"
-              sx={{
-                color: "text.primary",
-                "&:hover": {
-                  backgroundColor: "rgba(139, 92, 246, 0.1)",
-                },
-              }}
-            >
-              <Forward10 sx={{ fontSize: 32 }} />
-            </IconButton>
-          </Tooltip>
-
           <Button
             variant="outlined"
             onClick={handleStop}
@@ -577,6 +562,20 @@ export default function AudioPlayer({ story, onClose }: AudioPlayerProps) {
           >
             Stop
           </Button>
+          <Tooltip title="Forward 10 seconds">
+            <IconButton
+              onClick={handleSkipForward}
+              aria-label="Skip forward 10 seconds"
+              sx={{
+                color: "text.primary",
+                "&:hover": {
+                  backgroundColor: "rgba(139, 92, 246, 0.1)",
+                },
+              }}
+            >
+              <Forward10 sx={{ fontSize: 32 }} />
+            </IconButton>
+          </Tooltip>
         </Box>
 
         {/* Volume control */}
