@@ -17,6 +17,7 @@ export default function SplashScreen() {
 
     const audio = audioRef.current;
     if (audio) {
+      audio.volume = 0.5;
       audio
         .play()
         .then(() => {
