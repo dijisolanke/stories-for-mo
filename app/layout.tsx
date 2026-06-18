@@ -8,6 +8,7 @@ import theme from "./theme";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import StarField from "@/components/StarField";
+import SplashScreen from "@/components/SplashScreen";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" type="image/png" href="/portrait_192x192.png" />
         <link rel="apple-touch-icon" href="/portrait_180x180.png"></link>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -43,6 +45,7 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <SplashScreen />
             <StarField />
             {children}
           </ThemeProvider>
