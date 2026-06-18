@@ -236,11 +236,11 @@ export default function AudioPlayer({ story, onClose }: AudioPlayerProps) {
 
   // Update Media Session position state
   useEffect(() => {
-    if ("mediaSession" in navigator && duration > 0) {
+    if ("mediaSession" in navigator && duration > 0 && isFinite(duration)) {
       navigator.mediaSession.setPositionState({
         duration: duration,
         playbackRate: 1,
-        position: currentTime,
+        position: Math.min(currentTime, duration),
       });
     }
   }, [currentTime, duration]);
