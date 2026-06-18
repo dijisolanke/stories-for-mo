@@ -8,28 +8,34 @@ export default function SplashScreen() {
   const [exiting, setExiting] = useState(false);
   const [gone, setGone] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const playedRef = useRef(false);
+  const exitingRef = useRef(false);
 
-  const tryPlay = () => {
-    if (playedRef.current || !audioRef.current) return;
-    audioRef.current
-      .play()
-      .then(() => {
-        playedRef.current = true;
-      })
-      .catch(() => {});
+  const beginExit = () => {
+    if (exitingRef.current) return;
+    exitingRef.current = true;
+    setExiting(true);
+
+    const audio = audioRef.current;
+    if (audio) {
+      audio
+        .play()
+        .then(() => {
+          // Remove component after audio finishes
+          audio.addEventListener("ended", () => setGone(true), { once: true });
+        })
+        .catch(() => {
+          // Audio blocked — remove after fade completes
+          setTimeout(() => setGone(true), 900);
+        });
+    } else {
+      setTimeout(() => setGone(true), 900);
+    }
   };
 
   useEffect(() => {
     const fadeInTimer = setTimeout(() => setFadeIn(true), 80);
-
-    tryPlay();
-
-    // Begin exit after 5s (matches audio length), then remove after fade
-    const exitTimer = setTimeout(() => {
-      setExiting(true);
-      setTimeout(() => setGone(true), 900);
-    }, 5000);
+    // Auto-exit after 3s — user tap also triggers early
+    const exitTimer = setTimeout(beginExit, 3000);
 
     return () => {
       clearTimeout(fadeInTimer);
@@ -41,8 +47,8 @@ export default function SplashScreen() {
 
   return (
     <Box
-      onClick={tryPlay}
-      onTouchStart={tryPlay}
+      onClick={beginExit}
+      onTouchStart={beginExit}
       sx={{
         position: "fixed",
         inset: 0,
@@ -55,6 +61,7 @@ export default function SplashScreen() {
         justifyContent: "center",
         gap: 3,
         opacity: exiting ? 0 : 1,
+        pointerEvents: exiting ? "none" : "auto",
         transition: "opacity 0.9s ease",
         userSelect: "none",
       }}
